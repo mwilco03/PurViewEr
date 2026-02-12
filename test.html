@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GitHub Pages Test</title>
+<style>
+body { font-family: system-ui; background: #0c0e12; color: #e2e8f0; padding: 40px; }
+.success { color: #22c55e; }
+.error { color: #ef4444; }
+</style>
+</head>
+<body>
+<h1 class="success">✓ GitHub Pages is Working</h1>
+<p>If you see this page, GitHub Pages deployment is successful.</p>
+
+<h2>CDN Dependency Test:</h2>
+<div id="react-test">Loading React...</div>
+<div id="papaparse-test">Loading PapaParse...</div>
+<div id="recharts-test">Loading Recharts...</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/recharts/2.12.7/Recharts.js"></script>
+
+<script>
+// Test React
+if (typeof React !== 'undefined') {
+  document.getElementById('react-test').innerHTML = '<span class="success">✓ React loaded (version ' + React.version + ')</span>';
+} else {
+  document.getElementById('react-test').innerHTML = '<span class="error">✗ React FAILED to load</span>';
+}
+
+// Test PapaParse
+if (typeof Papa !== 'undefined') {
+  document.getElementById('papaparse-test').innerHTML = '<span class="success">✓ PapaParse loaded</span>';
+} else {
+  document.getElementById('papaparse-test').innerHTML = '<span class="error">✗ PapaParse FAILED to load</span>';
+}
+
+// Test Recharts
+if (typeof Recharts !== 'undefined') {
+  document.getElementById('recharts-test').innerHTML = '<span class="success">✓ Recharts loaded</span>';
+} else {
+  document.getElementById('recharts-test').innerHTML = '<span class="error">✗ Recharts FAILED to load</span>';
+}
+</script>
+
+<h2>Next Steps:</h2>
+<ul>
+<li>If all dependencies show ✓, return to <a href="index.html" style="color: #60a5fa;">index.html</a></li>
+<li>If any show ✗, there's a CDN connectivity issue</li>
+<li>Check browser console (F12) for detailed errors</li>
+</ul>
+
+<p style="margin-top: 40px; font-size: 12px; color: #64748b;">
+Test page for PurViewEr deployment verification
+</p>
+</body>
+</html>
