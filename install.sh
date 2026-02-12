@@ -4,17 +4,18 @@ set -e
 
 echo "Installing PurView Forensic Analyzer..."
 
-GITHUB_RAW_URL="https://raw.githubusercontent.com/mwilco03/PurViewEr/main/index.html"
-LOCAL_PATH="$HOME/Downloads/purview-forensic-analyzer.html"
+ZIP_URL="https://github.com/mwilco03/PurViewEr/archive/refs/heads/main.zip"
+INSTALL_DIR="$HOME/Downloads/PurViewEr"
+ZIP_PATH="/tmp/PurViewEr.zip"
 
-# Download the HTML file
+# Download the repo zip
 if command -v curl &> /dev/null; then
-    curl -fsSL "$GITHUB_RAW_URL" -o "$LOCAL_PATH" || {
+    curl -fsSL "$ZIP_URL" -o "$ZIP_PATH" || {
         echo "Error: Download failed" >&2
         exit 1
     }
 elif command -v wget &> /dev/null; then
-    wget -q "$GITHUB_RAW_URL" -O "$LOCAL_PATH" || {
+    wget -q "$ZIP_URL" -O "$ZIP_PATH" || {
         echo "Error: Download failed" >&2
         exit 1
     }
@@ -24,21 +25,27 @@ else
 fi
 
 # Verify download
-if [[ ! -f "$LOCAL_PATH" ]] || [[ $(wc -c < "$LOCAL_PATH") -le 10240 ]]; then
+if [[ ! -f "$ZIP_PATH" ]] || [[ $(wc -c < "$ZIP_PATH") -le 10240 ]]; then
     echo "Error: Download verification failed" >&2
     exit 1
 fi
 
+# Extract and clean up
+rm -rf "$INSTALL_DIR"
+unzip -qo "$ZIP_PATH" -d "$HOME/Downloads"
+mv "$HOME/Downloads/PurViewEr-main" "$INSTALL_DIR"
+rm -f "$ZIP_PATH"
+
 # Open in default browser
 if [[ "$OSTYPE" == "darwin"* ]]; then
-    open "$LOCAL_PATH" 2>/dev/null
+    open "$INSTALL_DIR/index.html" 2>/dev/null
 elif command -v xdg-open &> /dev/null; then
-    xdg-open "$LOCAL_PATH" 2>/dev/null
+    xdg-open "$INSTALL_DIR/index.html" 2>/dev/null
 fi
 
 echo ""
 echo "Installation complete. Application opened in your browser."
-echo "File location: $LOCAL_PATH"
+echo "File location: $INSTALL_DIR/index.html"
 echo ""
 echo "How to start:"
 echo "  1. Drag and drop Purview CSV files onto the browser window"

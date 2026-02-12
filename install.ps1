@@ -3,21 +3,27 @@ $ErrorActionPreference = "Stop"
 
 Write-Host "Installing PurView Forensic Analyzer..."
 
-$GithubRawUrl = "https://raw.githubusercontent.com/mwilco03/PurViewEr/main/index.html"
-$LocalPath = "$env:USERPROFILE\Downloads\purview-forensic-analyzer.html"
+$ZipUrl = "https://github.com/mwilco03/PurViewEr/archive/refs/heads/main.zip"
+$InstallDir = "$env:USERPROFILE\Downloads\PurViewEr"
+$ZipPath = "$env:TEMP\PurViewEr.zip"
 
 try {
-    Invoke-WebRequest -Uri $GithubRawUrl -OutFile $LocalPath -UseBasicParsing -ErrorAction Stop | Out-Null
+    Invoke-WebRequest -Uri $ZipUrl -OutFile $ZipPath -UseBasicParsing -ErrorAction Stop | Out-Null
 
-    if (!(Test-Path $LocalPath) -or (Get-Item $LocalPath).Length -le 10KB) {
+    if (!(Test-Path $ZipPath) -or (Get-Item $ZipPath).Length -le 10KB) {
         throw "Download verification failed"
     }
 
-    Start-Process $LocalPath -ErrorAction Stop
+    if (Test-Path $InstallDir) { Remove-Item $InstallDir -Recurse -Force }
+    Expand-Archive -Path $ZipPath -DestinationPath "$env:USERPROFILE\Downloads" -Force
+    Rename-Item "$env:USERPROFILE\Downloads\PurViewEr-main" $InstallDir -Force
+    Remove-Item $ZipPath -Force
+
+    Start-Process "$InstallDir\index.html" -ErrorAction Stop
 
     Write-Host ""
     Write-Host "Installation complete. Application opened in your browser."
-    Write-Host "File location: $LocalPath"
+    Write-Host "File location: $InstallDir\index.html"
     Write-Host ""
     Write-Host "How to start:"
     Write-Host "  1. Drag and drop Purview CSV files onto the browser window"
