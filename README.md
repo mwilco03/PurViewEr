@@ -20,6 +20,8 @@ A powerful, browser-based forensic analysis tool for Microsoft Purview audit log
 
 ## Quick Start
 
+**🌐 Use Online:** [https://mwilco03.github.io/PurViewEr/](https://mwilco03.github.io/PurViewEr/)
+
 **PowerShell (Windows):**
 ```powershell
 irm https://raw.githubusercontent.com/mwilco03/PurViewEr/main/install.ps1 | iex
@@ -43,7 +45,7 @@ curl -fsSL https://raw.githubusercontent.com/mwilco03/PurViewEr/main/install.sh 
 
 ### Method 2: Use GitHub Pages (Online)
 
-Visit the hosted version at your GitHub Pages URL and bookmark it. Works online with all features.
+Visit **[https://mwilco03.github.io/PurViewEr/](https://mwilco03.github.io/PurViewEr/)** and bookmark it. Works online with all features, no installation required.
 
 ### Method 3: Run Installer Script
 
