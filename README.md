@@ -20,45 +20,46 @@ A powerful, browser-based forensic analysis tool for Microsoft Purview audit log
 
 ## Quick Start
 
-### Online Use (GitHub Pages)
+**🌐 Use Online:** [https://mwilco03.github.io/PurViewEr/](https://mwilco03.github.io/PurViewEr/)
 
-Visit: `https://[your-username].github.io/PurViewEr/`
-
-Simply drag and drop your Purview CSV export files to begin analysis.
-
-### Offline Installation
-
-#### Windows (PowerShell)
-
+**PowerShell (Windows):**
 ```powershell
-# Download and launch in one command
-irm https://raw.githubusercontent.com/[your-username]/PurViewEr/main/install.ps1 | iex
+irm https://raw.githubusercontent.com/mwilco03/PurViewEr/main/install.ps1 | iex
 ```
 
-Or manually:
+**Bash/Zsh (macOS/Linux):**
+```bash
+curl -fsSL https://raw.githubusercontent.com/mwilco03/PurViewEr/main/install.sh | bash
+```
 
+---
+
+## Installation
+
+### Method 1: Download from GitHub
+
+1. Go to the [latest release](https://github.com/mwilco03/PurViewEr/releases) or download the repository
+2. Download as ZIP and extract to your preferred location
+3. Open `index.html` in your web browser
+4. Bookmark the file for future use
+
+### Method 2: Use GitHub Pages (Online)
+
+Visit **[https://mwilco03.github.io/PurViewEr/](https://mwilco03.github.io/PurViewEr/)** and bookmark it. Works online with all features, no installation required.
+
+### Method 3: Run Installer Script
+
+**Windows:**
 ```powershell
 .\install.ps1
 ```
 
-#### macOS / Linux (Bash/Zsh)
-
+**macOS/Linux:**
 ```bash
-# Download and launch in one command
-curl -fsSL https://raw.githubusercontent.com/[your-username]/PurViewEr/main/install.sh | bash
-```
-
-Or manually:
-
-```bash
-chmod +x install.sh
 ./install.sh
 ```
 
-The installer will:
-1. Download the HTML file
-2. Open it in your default browser
-3. The application works completely offline after the first load
+The installer downloads `index.html` to your Downloads folder and opens it automatically.
 
 ## Usage Guide
 
@@ -384,8 +385,8 @@ MIT License - See LICENSE file for details
 
 ## Support
 
-- **Issues:** [GitHub Issues](https://github.com/[your-username]/PurViewEr/issues)
-- **Discussions:** [GitHub Discussions](https://github.com/[your-username]/PurViewEr/discussions)
+- **Issues:** Report bugs or request features via GitHub Issues
+- **Discussions:** Ask questions via GitHub Discussions
 
 ## Acknowledgments
 

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="refresh" content="0; url=/">
+<title>Redirecting...</title>
+<style>
+  body {
+    font-family: system-ui, -apple-system, sans-serif;
+    background: #0c0e12;
+    color: #e2e8f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    text-align: center;
+  }
+  .container {
+    max-width: 400px;
+    padding: 40px 20px;
+  }
+  h1 {
+    font-size: 48px;
+    margin: 0 0 16px 0;
+    color: #ef4444;
+  }
+  p {
+    font-size: 16px;
+    color: #94a3b8;
+    margin: 0 0 24px 0;
+  }
+  .spinner {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border: 4px solid #1e293b;
+    border-top-color: #3b82f6;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+  a {
+    color: #60a5fa;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+</style>
+<script>
+// Immediate redirect to index.html
+window.location.href = '/PurViewEr/';
+</script>
+</head>
+<body>
+<div class="container">
+  <h1>404</h1>
+  <p>Redirecting to Purview Forensic Analyzer...</p>
+  <div class="spinner"></div>
+  <p style="margin-top: 24px; font-size: 13px;">
+    If you are not redirected, <a href="/PurViewEr/">click here</a>.
+  </p>
+</div>
+</body>
+</html>
