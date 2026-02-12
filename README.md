@@ -1,4 +1,4 @@
-# PurView Forensic Analyzer
+# PurViewEr Forensic Analyzer
 
 A powerful, browser-based forensic analysis tool for Microsoft Purview audit logs. Analyze, classify, and investigate security incidents directly in your browser with zero server requirements.
 
