@@ -26,6 +26,7 @@
 </head>
 <body>
 <div id="root"></div>
+<script>window.onerror=function(m,s,l,c,e){document.getElementById("root").innerHTML='<pre style="color:red;padding:20px">JS ERROR: '+m+'\nLine: '+l+', Col: '+c+'\n'+(e&&e.stack||'')+'</pre>';}</script>
 <script type="text/babel">
 const { useState, useMemo, useCallback, useRef, useEffect, useReducer, Component, Fragment } = React;
 const { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } = Recharts;
@@ -1041,7 +1042,11 @@ function App() {
   );
 }
 
-ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+try {
+  ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+} catch(e) {
+  document.getElementById("root").innerHTML = '<pre style="color:red;padding:20px">RENDER ERROR: ' + e.message + '\n\n' + e.stack + '</pre>';
+}
 </script>
 </body>
 </html>
