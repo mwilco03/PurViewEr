@@ -22,6 +22,8 @@ A powerful, browser-based forensic analysis tool for Microsoft Purview audit log
 
 **🌐 Use Online:** [https://mwilco03.github.io/PurViewEr/](https://mwilco03.github.io/PurViewEr/)
 
+The installer scripts download the full repository (including bundled libraries) to `~/Downloads/PurViewEr/` and open the app in your default browser.
+
 **PowerShell (Windows):**
 ```powershell
 irm https://raw.githubusercontent.com/mwilco03/PurViewEr/main/install.ps1 | iex
