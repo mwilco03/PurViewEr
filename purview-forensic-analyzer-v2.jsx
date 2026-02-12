@@ -1,4 +1,4 @@
-import { useState, useMemo, useCallback, useRef, useEffect, useReducer } from "react";
+import React, { useState, useMemo, useCallback, useRef, useEffect, useReducer } from "react";
 import * as Papa from "papaparse";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell } from "recharts";
 
@@ -334,34 +334,34 @@ function reducer(state, action) {
 }
 
 // ═══════════════════════════════════════════════════════════════════════════════
-// PERSISTENCE (window.storage API)
+// PERSISTENCE (localStorage API)
 // ═══════════════════════════════════════════════════════════════════════════════
 
-async function persistIpMap(ipMap) {
+function persistIpMap(ipMap) {
   try {
-    await window.storage.set(STORAGE_KEY_IP_MAP, JSON.stringify(ipMap));
+    localStorage.setItem(STORAGE_KEY_IP_MAP, JSON.stringify(ipMap));
   } catch { /* storage unavailable */ }
 }
 
-async function loadPersistedIpMap() {
+function loadPersistedIpMap() {
   try {
-    const result = await window.storage.get(STORAGE_KEY_IP_MAP);
-    return result ? JSON.parse(result.value) : null;
+    const raw = localStorage.getItem(STORAGE_KEY_IP_MAP);
+    return raw ? JSON.parse(raw) : null;
   } catch {
     return null;
   }
 }
 
-async function persistIocs(iocs) {
+function persistIocs(iocs) {
   try {
-    await window.storage.set(STORAGE_KEY_IOCS, JSON.stringify(iocs));
+    localStorage.setItem(STORAGE_KEY_IOCS, JSON.stringify(iocs));
   } catch { /* storage unavailable */ }
 }
 
-async function loadPersistedIocs() {
+function loadPersistedIocs() {
   try {
-    const result = await window.storage.get(STORAGE_KEY_IOCS);
-    return result ? JSON.parse(result.value) : null;
+    const raw = localStorage.getItem(STORAGE_KEY_IOCS);
+    return raw ? JSON.parse(raw) : null;
   } catch {
     return null;
   }
@@ -470,9 +470,6 @@ class ErrorBoundary extends React.Component {
     return this.props.children;
   }
 }
-
-// We need React available for the class component
-import React from "react";
 
 function Badge({ cls }) {
   const meta = IP_CLASS_META[cls] || IP_CLASS_META[IP_CLASS.UNKNOWN];
@@ -957,12 +954,10 @@ function App() {
 
   // Load persisted data on mount
   useEffect(() => {
-    (async () => {
-      const savedIpMap = await loadPersistedIpMap();
-      if (savedIpMap) dispatch({ type: ACTION.SET_IP_MAP, payload: savedIpMap });
-      const savedIocs = await loadPersistedIocs();
-      if (savedIocs) dispatch({ type: ACTION.SET_IOCS, payload: savedIocs });
-    })();
+    const savedIpMap = loadPersistedIpMap();
+    if (savedIpMap) dispatch({ type: ACTION.SET_IP_MAP, payload: savedIpMap });
+    const savedIocs = loadPersistedIocs();
+    if (savedIocs) dispatch({ type: ACTION.SET_IOCS, payload: savedIocs });
   }, []);
 
   // Persist IP map on changes
